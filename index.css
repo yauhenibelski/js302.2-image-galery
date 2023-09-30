@@ -1,0 +1,75 @@
+html {
+  font-size: 1vmax;
+  font-family :Verdana, Geneva, Tahoma, sans-serif;
+}
+body {
+  margin: 0px;
+  padding: 0px;
+}
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  border-bottom: 0.3vmax solid #318079;
+  padding: 1% 2% ;
+}
+.logo-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  color: rgb(74, 74, 74);
+  width: 19vmax;
+  margin-right: 2%;
+}
+.logo-container img {
+  width: 3vmax;
+}
+h1 {
+  margin: 0;
+}
+.search-container{
+  position: relative;
+}
+.search {
+  display: block;
+  font-size: 1rem;
+  padding-left: 2%;
+  width: 35vmax;
+  height: 2vmax;
+  border: solid 0.1vmax;
+  box-sizing: border-box;
+  border-radius: 25px;
+  outline: none;
+  transition: all 0.30s ease-in-out;
+  border: 2px solid #000000;
+  margin-left: 2%;
+  opacity: 0.4;
+}
+.search:focus {
+  box-shadow: 0px 0px 10px 0px rgb(31, 67, 53);
+}
+
+.search:focus + .clear-btn {
+  background-image: url(/assets/close.svg);
+}
+
+header {
+  padding-left: 2%;
+  padding-right: 2%;
+}
+.clear-btn {
+  position: absolute;
+  top: 13%;
+  right: 1%;
+  width: 1.5vmax;
+  height: 1.5vmax;
+  background-repeat: no-repeat;
+  background-image: url(/assets/search.svg);
+  background-size: contain;
+  border: none;
+  background-color: transparent;
+  transition: 0.3s;
+}
