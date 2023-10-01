@@ -35,7 +35,7 @@ h1 {
 }
 .search {
   display: block;
-  font-size: 1rem;
+  font-size: 1.5rem;
   padding-left: 2%;
   width: 35vmax;
   height: 3vmax;
@@ -53,7 +53,7 @@ h1 {
 }
 
 .search:focus + .clear-btn {
-  background-image: url(/assets/close.svg);
+  background-image: url(./assets/close.svg);
   cursor: pointer;
 }
 
@@ -68,7 +68,7 @@ header {
   width: 1.5vmax;
   height: 1.5vmax;
   background-repeat: no-repeat;
-  background-image: url(/assets/search.svg);
+  background-image: url(./assets/search.svg);
   background-size: contain;
   border: none;
   background-color: transparent;
@@ -80,24 +80,17 @@ main {
   flex-wrap: wrap;
   justify-content: center;
 }
-.i-container {
+.img-container {
   width: 25vmax;
   height: 15vmax;
-  /* margin: 0.2%; */
   display: flex;
   align-items: center;
   overflow: hidden;
   transition: 0.3s;
-  /* background-color: #274d4a; */
 }
-/* .i-container:hover {
-  position: relative;
-  z-index: 1;
-  overflow: visible;
-} */
-.i-container img {
+
+.img-container img {
   width: 100%;
-  /* height: 100%; */
 }
 footer {
   display: flex;
@@ -115,4 +108,17 @@ footer {
   color: #000000;
   text-decoration: none;
   margin-right: 1%;
+}
+.error-message {
+  color: rgb(74, 74, 74);
+}
+@media (max-width: 840px) {
+  header {
+    flex-direction: column;
+    justify-content: center;
+  }
+  .img-container {
+    width: 100%;
+    height: 50vmin;
+  }
 }

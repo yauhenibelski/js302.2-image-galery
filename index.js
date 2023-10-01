@@ -16,6 +16,7 @@ class App {
   rsLogo = createElement({ tagName: 'a', className: 'rs-logo' });
   year = createElement({ tagName: 'span', text: '2023' });
   ghLink = createElement({ tagName: 'a', text: 'Yauheni Belski', className: 'gh-link' });
+  errorMessage = createElement({ tagName: 'h2', text: 'Oops... Server error =(', className: 'error-message' });
 
   constructor() {
     this.search.type = 'name';
@@ -24,7 +25,18 @@ class App {
     this.rsLogo.href = 'https://rs.school/js-stage0/';
     this.ghLink.href = 'https://github.com/yauhenibelski';
 
-    this.search.onchange = (e) => this.render(e.target.value);
+    this.search.onfocus = () => {
+      document.onkeydown = (e) => {
+        if (e.key === 'Enter') {
+          this.render(this.search.value);
+        }
+      }
+    }
+    this.search.onchange = (e) => {
+      this.render(e.target.value);
+      document.onkeydown = null;
+    };
+    this.clearInput.onclick = () => this.search.value ? this.search.value = '' : false;
   }
 
   appendElementsInDOM() {
@@ -46,15 +58,22 @@ class App {
     this.container.append(this.footer);
   }
 
-  async render(val = 'water') {
+  async render(val) {
     this.main.innerHTML = '';
-    const q = await getImgs(val);
+    try {
+      const result = await getImgs(val);
+      const imgs = await Promise.all(result.results.map((val) => getImgElem(val.urls.regular)));
 
-    q.results.forEach(elem => {
-      const c = createElement({ tagName: 'div', className: 'i-container' });
-      c.append(getImgElem(elem.urls.small));
-      this.main.append(c);
-    });
+      imgs.forEach(elem => {
+        const imgContainer = createElement({ tagName: 'div', className: 'img-container' });
+        imgContainer.append(elem);
+
+        this.main.append(imgContainer);
+      });
+
+    } catch {
+      this.main.append(this.errorMessage);
+    }
   }
 
   run() {
