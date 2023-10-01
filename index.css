@@ -109,7 +109,7 @@ footer {
   text-decoration: none;
   margin-right: 1%;
 }
-.error-message {
+.message {
   color: rgb(74, 74, 74);
 }
 @media (max-width: 840px) {

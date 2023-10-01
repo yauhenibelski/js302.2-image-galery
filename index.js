@@ -16,7 +16,8 @@ class App {
   rsLogo = createElement({ tagName: 'a', className: 'rs-logo' });
   year = createElement({ tagName: 'span', text: '2023' });
   ghLink = createElement({ tagName: 'a', text: 'Yauheni Belski', className: 'gh-link' });
-  errorMessage = createElement({ tagName: 'h2', text: 'Oops... Server error =(', className: 'error-message' });
+  errorMessage = createElement({ tagName: 'h2', text: 'Oops... Server error =(', className: 'message' });
+  imgNotFoundMessage = createElement({ tagName: 'h2', text: 'Images not found.', className: 'message' });
 
   constructor() {
     this.search.type = 'name';
@@ -62,8 +63,9 @@ class App {
     this.main.innerHTML = '';
     try {
       const result = await getImgs(val);
-      const imgs = await Promise.all(result.results.map((val) => getImgElem(val.urls.regular)));
+      if (!result.total) return this.main.append(this.imgNotFoundMessage);
 
+      const imgs = await Promise.all(result.results.map((val) => getImgElem(val.urls.regular)));
       imgs.forEach(elem => {
         const imgContainer = createElement({ tagName: 'div', className: 'img-container' });
         imgContainer.append(elem);
