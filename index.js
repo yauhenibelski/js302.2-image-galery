@@ -81,6 +81,7 @@ class App {
   run() {
     this.appendElementsInDOM();
     this.render();
+    this.search.focus();
   }
 }
 
