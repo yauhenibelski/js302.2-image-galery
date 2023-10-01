@@ -38,12 +38,12 @@ h1 {
   font-size: 1rem;
   padding-left: 2%;
   width: 35vmax;
-  height: 2vmax;
+  height: 3vmax;
   border: solid 0.1vmax;
   box-sizing: border-box;
   border-radius: 25px;
   outline: none;
-  transition: all 0.30s ease-in-out;
+  transition: 0.2s;
   border: 2px solid #000000;
   margin-left: 2%;
   opacity: 0.4;
@@ -54,6 +54,7 @@ h1 {
 
 .search:focus + .clear-btn {
   background-image: url(/assets/close.svg);
+  cursor: pointer;
 }
 
 header {
@@ -62,7 +63,7 @@ header {
 }
 .clear-btn {
   position: absolute;
-  top: 13%;
+  top: 25%;
   right: 1%;
   width: 1.5vmax;
   height: 1.5vmax;
@@ -71,5 +72,47 @@ header {
   background-size: contain;
   border: none;
   background-color: transparent;
+  transition: 0.1s;
+}
+main {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.i-container {
+  width: 25vmax;
+  height: 15vmax;
+  /* margin: 0.2%; */
+  display: flex;
+  align-items: center;
+  overflow: hidden;
   transition: 0.3s;
+  /* background-color: #274d4a; */
+}
+/* .i-container:hover {
+  position: relative;
+  z-index: 1;
+  overflow: visible;
+} */
+.i-container img {
+  width: 100%;
+  /* height: 100%; */
+}
+footer {
+  display: flex;
+  align-items: center;
+  padding: 1%;
+}
+.rs-logo {
+  display: block;
+  background-image: url('https://rs.school/images/rs_school_js.svg');
+  background-size: 100% 100%;
+  width: 8vmax;
+  height: 2vmax;
+}
+.gh-link {
+  color: #000000;
+  text-decoration: none;
+  margin-right: 1%;
 }

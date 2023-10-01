@@ -1,5 +1,6 @@
+import { getImgs } from './utils/api.js';
 import { createElement } from './utils/createElement.js';
-import { getImg } from './utils/getImg.js';
+import { getImgElem } from './utils/getImgElem.js';
 
 class App {
   container = document.body;
@@ -8,17 +9,22 @@ class App {
   main = createElement({ tagName: 'main' });
   headline = createElement({ tagName: 'h1', text: 'Unsplash API' });
   logoContainer = createElement({ tagName: 'div', className: 'logo-container' });
-  logo = getImg('./assets/logo.svg', 'logo');
+  logo = getImgElem('./assets/logo.svg', 'logo');
   searchContainer = createElement({ tagName: 'div', className: 'search-container' });
   clearInput = createElement({ tagName: 'button', className: 'clear-btn' });
   search = createElement({ tagName: 'input', className: 'search' });
-  rsLogo = createElement({ tagName: 'a' });
-  year = createElement({ tagName: 'p', text: '2023' });
-  ghLink = createElement({ tagName: 'a', text: 'Yauheni Belski' });
+  rsLogo = createElement({ tagName: 'a', className: 'rs-logo' });
+  year = createElement({ tagName: 'span', text: '2023' });
+  ghLink = createElement({ tagName: 'a', text: 'Yauheni Belski', className: 'gh-link' });
 
   constructor() {
     this.search.type = 'name';
     this.search.placeholder = 'Search...';
+
+    this.rsLogo.href = 'https://rs.school/js-stage0/';
+    this.ghLink.href = 'https://github.com/yauhenibelski';
+
+    this.search.onchange = (e) => this.render(e.target.value);
   }
 
   appendElementsInDOM() {
@@ -40,15 +46,22 @@ class App {
     this.container.append(this.footer);
   }
 
-  render() {
+  async render(val = 'water') {
+    this.main.innerHTML = '';
+    const q = await getImgs(val);
 
+    q.results.forEach(elem => {
+      const c = createElement({ tagName: 'div', className: 'i-container' });
+      c.append(getImgElem(elem.urls.small));
+      this.main.append(c);
+    });
   }
 
   run() {
     this.appendElementsInDOM();
+    this.render();
   }
 }
 
 const app = new App();
-
 app.run();
